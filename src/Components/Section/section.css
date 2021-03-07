@@ -1,0 +1,198 @@
+.section {
+  background: var(--light-grey);
+  display: flex;
+  min-height: 100vh;
+}
+.side-nav {
+  flex-grow: 1;
+  margin-top: 3rem;
+  background: white;
+  border-top-right-radius: 10px;
+  box-shadow: 5px -5px 10px #e3e3e3, -5px 5px 10px #ffffff;
+}
+.main-area {
+  flex-grow: 6;
+  margin-top: 3rem;
+}
+.side-nav__titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem 0rem;
+  padding: 1rem;
+  margin-right: 1rem;
+}
+
+.title > .svg {
+  flex-grow: 1;
+  margin-right: 0.5rem;
+}
+.title:hover {
+  background: var(--light-orange-color);
+  border-radius: 0 40px 40px 0;
+}
+
+.title:hover > .title-heading {
+  color: black;
+}
+
+.title > .title-heading {
+  flex-grow: 2;
+  justify-self: flex-end;
+  color: var(--dark-grey-color);
+}
+
+/* Main Area Add Note Section */
+
+.add-note-section {
+  background: white;
+  width: 50%;
+  margin: auto;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.add-note-input-section {
+  background: var(--light-grey);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+.add-note-input-section .input {
+  background: transparent;
+  border: none;
+  width: 100%;
+  background: var(--light-grey);
+  padding: 1rem;
+}
+.add-note-input-section .input:focus {
+  outline: none;
+}
+.add-note-input-section .title-input {
+  border-bottom: 1px solid var(--dark-grey-color);
+  color: var(--dark-grey-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-note-input-section .title-input::placeholder {
+  color: var(--dark-grey-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-note-input-section .note-text-input {
+  height: 80px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  background: var(--light-grey);
+  padding: 1rem;
+}
+.add-note-input-section .note-text-input:focus {
+  outline: none;
+}
+
+/*  Add Note Color Circles */
+.note-properties {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-note-properties-section {
+  display: flex;
+  margin: 0.5rem 0;
+}
+.add-note-properties-section .color-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.add-note-properties-section .color-circle:hover {
+  border: 2px solid var(--dark-grey-color);
+}
+.circle-one {
+  background: var(--circle-color-one);
+}
+.circle-two {
+  background: var(--circle-color-two);
+}
+.circle-three {
+  background: var(--circle-color-three);
+}
+.circle-four {
+  background: var(--circle-color-four);
+}
+.properties-pin-add {
+  display: flex;
+  align-items: center;
+}
+.pin-icon {
+  margin-left: 1rem;
+}
+.add-button {
+  background: var(--light-grey);
+  padding: 0.5rem 1.5rem;
+  border: none;
+  color: var(--dark-grey-color);
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.add-button:focus {
+  outline: none;
+}
+
+.pin-icon {
+  cursor: pointer;
+}
+
+/* Tags Section */
+
+.tags-div {
+  width: 50%;
+  margin: 1rem auto;
+  display: flex;
+}
+.tag {
+  display: flex;
+  background: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border-bottom: 3px solid var(--circle-color-one);
+  margin-right: 1rem;
+}
+.tag > .img {
+  filter: invert(75%) sepia(12%) saturate(1001%) hue-rotate(157deg)
+    brightness(94%) contrast(87%);
+  margin-right: 0.5rem;
+}
+
+/* Tags Done --> Notes Section started */
+
+.display-notes {
+  width: 70%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.note {
+  width: 250px;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border-bottom: 3px solid var(--circle-color-one);
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}

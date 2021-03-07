@@ -1,0 +1,22 @@
+.App {
+  font-family: sans-serif;
+}
+
+:root {
+  --orange-color: #ffae19;
+  --light-orange-color: #ffc966;
+  --light-grey: #f2f2f2;
+  --medium-grey-text: #bfbfbf;
+  --dark-grey-color: #595959;
+  --set-border-radius: 5px;
+  --circle-color-one: #86bbd8;
+  --circle-color-two: #70ae6e;
+  --circle-color-three: #c18c5d;
+  --circle-color-four: #fb8f67;
+}
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Google Sans, arial, sans-serif;
+  box-sizing: border-box;
+}

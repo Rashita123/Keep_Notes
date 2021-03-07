@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+/* header Left */
+.header_left-icon {
+  flex-grow: 1;
+}
+.orange-background {
+  background: var(--orange-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+}
+
+.dark-grey-color {
+  color: var(--dark-grey-color);
+}
+/* Header middle */
+
+.header_search-bar {
+  flex-grow: 1;
+}
+.search-background-div {
+  background: var(--light-grey);
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  padding: 0.25rem 1rem;
+  border-radius: var(--set-border-radius);
+}
+.search-background-div > .input {
+  background: transparent;
+  border: none;
+  margin-left: 1rem;
+}
+.search-background-div > .input::placeholder {
+  color: var(--medium-grey-text);
+}
+.search-background-div > .input:focus {
+  outline: none;
+}
+
+/* Header-right */
+
+.header_nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.header_nav-icons > .img {
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+/* Header done. section start */

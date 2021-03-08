@@ -2,7 +2,7 @@ import "./section.css";
 
 export const Note = (props) => {
   return (
-    <div class="note">
+    <div style={{ borderColor: [props.color] }} class="note">
       <h1>{props.title}</h1>
       <p>{props.note}</p>
       <div class="note-properties">

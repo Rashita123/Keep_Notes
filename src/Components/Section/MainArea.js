@@ -6,7 +6,8 @@ import { useState } from "react";
 const initialNotesDatabase = [
   {
     title: "First Heading",
-    note: "Lorem Ipsum somthing somthing"
+    note: "Lorem Ipsum somthing somthing",
+    color: "#86bbd8"
   }
 ];
 
@@ -37,6 +38,21 @@ export const MainArea = () => {
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
+  const addNoteHandler = () => {
+    if (newTitle === "" && newNote === "") return;
+    setNotesDatabase([
+      ...notesDatabase,
+      { title: newTitle, note: newNote, color: customBgColor }
+    ]);
+    setCustomBgColor("#f2f2f2");
+    setNewTitle("");
+    setNewNote("");
+  };
+  const ResetButtonHandler = () => {
+    setNewTitle("");
+    setNewNote("");
+    setCustomBgColor("#f2f2f2");
+  };
   return (
     <div class="main-area">
       <div class="add-note-section">
@@ -49,6 +65,7 @@ export const MainArea = () => {
             onChange={(event) => setNewTitle(event.target.value)}
             placeholder="Title"
             type="text"
+            value={newTitle}
             class=" input title-input"
           />
           <textarea
@@ -56,6 +73,7 @@ export const MainArea = () => {
             onChange={(event) => setNewNote(event.target.value)}
             placeholder="Take a note"
             type="text"
+            value={newNote}
             class=" placeholder note-text-input"
           ></textarea>
         </div>
@@ -81,25 +99,17 @@ export const MainArea = () => {
           </div>
           <div class="properties-pin-add">
             <img
-              alt=""
+              alt="pin-icon"
               class="pin-icon"
               src="https://img.icons8.com/ios/24/000000/pin3.png"
             />
             <img
-              alt=""
+              onClick={ResetButtonHandler}
+              alt="delete-icon"
               class="pin-icon"
               src="https://img.icons8.com/ios/24/000000/delete-trash.png"
             />
-            <button
-              onClick={() => {
-                setNotesDatabase([
-                  ...notesDatabase,
-                  { title: newTitle, note: newNote }
-                ]);
-                setCustomBgColor("#f2f2f2");
-              }}
-              class="add-button"
-            >
+            <button onClick={addNoteHandler} class="add-button">
               Add
             </button>
           </div>
@@ -112,8 +122,9 @@ export const MainArea = () => {
         ))}
       </div>
       <div class="display-notes">
-        {notesDatabase.map(({ title, note }) => {
-          return <Note title={title} note={note} />;
+        {notesDatabase.map(({ title, note, color }) => {
+          if (color === "#f2f2f2") color = "#86bbd8";
+          return <Note title={title} note={note} color={color} />;
         })}
       </div>
     </div>

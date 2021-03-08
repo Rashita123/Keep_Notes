@@ -5,6 +5,7 @@
 }
 .side-nav {
   flex-grow: 1;
+  min-width: 150px;
   margin-top: 3rem;
   background: white;
   border-top-right-radius: 10px;
@@ -167,15 +168,31 @@
   align-items: center;
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  border-bottom: 3px solid var(--circle-color-one);
   margin-right: 1rem;
-}
-.tag > .img {
-  filter: invert(75%) sepia(12%) saturate(1001%) hue-rotate(157deg)
-    brightness(94%) contrast(87%);
-  margin-right: 0.5rem;
+  cursor: pointer;
 }
 
+.randomTag {
+  margin-right: 0.5rem;
+  filter: invert(56%) sepia(63%) saturate(1400%) hue-rotate(313deg)
+    brightness(93%) contrast(92%);
+}
+.work {
+  margin-right: 0.5rem;
+  filter: invert(75%) sepia(12%) saturate(1001%) hue-rotate(157deg)
+    brightness(94%) contrast(87%);
+}
+
+.inspiration {
+  margin-right: 0.5rem;
+  filter: invert(96%) sepia(11%) saturate(1234%) hue-rotate(298deg)
+    brightness(99%) contrast(89%);
+}
+.todo {
+  margin-right: 0.5rem;
+  filter: invert(94%) sepia(5%) saturate(783%) hue-rotate(109deg)
+    brightness(103%) contrast(95%);
+}
 /* Tags Done --> Notes Section started */
 
 .display-notes {
@@ -195,4 +212,16 @@
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+}
+
+.colors-in-note {
+  display: none;
+}
+.palette:hover ~ .colors-in-note {
+  display: flex;
+  /* margin-top: 6rem; */
+  /* position: absolute; */
+  background: black;
+  padding: 0.5rem;
+  border-radius: 4px;
 }

@@ -1,0 +1,25 @@
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
+.toast-styling {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: 3px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

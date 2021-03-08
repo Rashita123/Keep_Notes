@@ -2,12 +2,12 @@ import { TagsDiv } from "./TagsDiv";
 import { Note } from "./Note";
 import "./section.css";
 import { useState } from "react";
-
 const initialNotesDatabase = [
   {
     title: "First Heading",
     note: "Lorem Ipsum somthing somthing",
-    color: "#86bbd8"
+    color: "#86bbd8",
+    tag: ""
   }
 ];
 
@@ -26,6 +26,11 @@ const initialTagsDatabase = [
     tag: "To-Do",
     bgcolor: "#D7F9F1",
     clas: "todo"
+  },
+  {
+    tag: "Personal",
+    bgcolor: "#fb8f67",
+    clas: "personal"
   }
 ];
 
@@ -35,6 +40,7 @@ export const MainArea = () => {
   const [customBgColor, setCustomBgColor] = useState("#f2f2f2");
   const [notesDatabase, setNotesDatabase] = useState(initialNotesDatabase);
   const [tagsDatabase, setTagsDatabase] = useState(initialTagsDatabase);
+  const [currentTag, setCurrentTag] = useState("");
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
@@ -42,16 +48,27 @@ export const MainArea = () => {
     if (newTitle === "" && newNote === "") return;
     setNotesDatabase([
       ...notesDatabase,
-      { title: newTitle, note: newNote, color: customBgColor }
+      {
+        title: newTitle,
+        note: newNote,
+        color: customBgColor,
+        tag: currentTag
+      }
     ]);
     setCustomBgColor("#f2f2f2");
     setNewTitle("");
     setNewNote("");
+    setCurrentTag("");
   };
   const ResetButtonHandler = () => {
     setNewTitle("");
     setNewNote("");
     setCustomBgColor("#f2f2f2");
+    setCurrentTag("");
+  };
+  const TagClickHandler = (bgcolor, tag) => {
+    setCustomBgColor(bgcolor);
+    setCurrentTag(tag);
   };
   return (
     <div class="main-area">
@@ -76,6 +93,7 @@ export const MainArea = () => {
             value={newNote}
             class=" placeholder note-text-input"
           ></textarea>
+          {currentTag !== "" && <span>Tag : {currentTag}</span>}
         </div>
         <div class="note-properties">
           <div class="add-note-properties-section">
@@ -118,13 +136,19 @@ export const MainArea = () => {
       <div class="tags-div">
         <TagsDiv tag={"Random Tag"} bgcolor={"#E56B70"} clas={"randomTag"} />
         {tagsDatabase.map(({ tag, bgcolor, clas }) => (
-          <TagsDiv tag={tag} bgcolor={bgcolor} clas={clas} />
+          <span
+            onClick={() => {
+              TagClickHandler(bgcolor, tag);
+            }}
+          >
+            <TagsDiv tag={tag} bgcolor={bgcolor} clas={clas} />
+          </span>
         ))}
       </div>
       <div class="display-notes">
-        {notesDatabase.map(({ title, note, color }) => {
+        {notesDatabase.map(({ title, note, color, tag }) => {
           if (color === "#f2f2f2") color = "#86bbd8";
-          return <Note title={title} note={note} color={color} />;
+          return <Note title={title} note={note} color={color} tag={tag} />;
         })}
       </div>
     </div>

@@ -1,12 +1,12 @@
 import "./Toast.css";
-export const Toast = () => {
+export const Toast = (props) => {
   return (
     <div className="toast-styling">
       <img
         alt="error-notification-icon"
         src="https://img.icons8.com/emoji/48/000000/cross-mark-emoji.png"
       />
-      <span>Enter Note to Add</span>
+      <span>{props.text}</span>
       <svg
         class="svg-icon"
         style={{ stroke: "red", cursor: "pointer" }}

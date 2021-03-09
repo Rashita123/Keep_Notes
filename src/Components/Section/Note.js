@@ -1,5 +1,4 @@
 import "./section.css";
-
 export const Note = (props) => {
   return (
     <div
@@ -36,7 +35,12 @@ export const Note = (props) => {
         <div class="properties-pin-add">
           <img
             alt="pin-icon"
-            style={{ position: "absolute", top: "10px", right: "10px" }}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              cursor: "pointer"
+            }}
             src="https://img.icons8.com/ios/24/000000/pin3.png"
           />
           <img

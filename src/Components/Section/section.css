@@ -162,10 +162,10 @@
   width: 50%;
   margin: 1rem auto;
   display: grid;
-  grid-template-columns: 160px 160px 160px 160px 160px;
+  background: red;
+  grid-template-columns: 180px 180px 180px 180px;
   grid-template-rows: 60px 60px;
   grid-auto-flow: row;
-
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
   /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
 }
@@ -173,16 +173,19 @@
   display: flex;
   background: white;
   height: auto;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   margin-right: 1rem;
   margin-top: 1rem;
   cursor: pointer;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
 }
-
+.tag > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .randomTag {
   margin-right: 0.5rem;
   filter: invert(56%) sepia(63%) saturate(1400%) hue-rotate(313deg)
@@ -237,6 +240,9 @@
 }
 .new-tag-input:focus {
   outline: none;
+}
+.new-tag-input::placeholder {
+  font-size: 16px;
 }
 /* Tags Done --> Notes Section started */
 

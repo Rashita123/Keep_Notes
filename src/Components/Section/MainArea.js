@@ -24,7 +24,7 @@ const initialTagsDatabase = [
     clas: "inspiration"
   },
   {
-    tag: "To-Do",
+    tag: "ToDo",
     bgcolor: "#D7F9F1",
     clas: "todo"
   },
@@ -67,11 +67,13 @@ export const MainArea = () => {
   const [newTag, setNewTag] = useState("");
   const [randomColorIndex, setRandomColorIndex] = useState(0);
   const [displayToast, setDisplayToast] = useState("none");
+  const [toastText, setToastText] = useState("");
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
   const addNoteHandler = () => {
     if (newTitle === "" && newNote === "") {
+      setToastText("Write something to ADD");
       setDisplayToast("block");
       return;
     }
@@ -103,12 +105,24 @@ export const MainArea = () => {
     setNewTag(e.target.value);
   };
   const checkIfEnterTag = (e) => {
+    let isTagPresent = false;
+    if (newTag === "") return;
+    tagsDatabase.map(({ tag, ...rest }) => {
+      if (newTag.toLowerCase() === tag.toLowerCase()) isTagPresent = true;
+    });
+
     const newobj = {
       tag: newTag,
       bgcolor: colorsAvailable[randomColorIndex].color,
       clas: colorsAvailable[randomColorIndex].clas
     };
     if (e.keyCode === 13) {
+      if (isTagPresent === true) {
+        setNewTag("");
+        setDisplayToast(true);
+        setToastText("Tag Already present");
+        return;
+      }
       setTagsDatabase([newobj, ...tagsDatabase]);
       setNewTag("");
       if (randomColorIndex === 4) setRandomColorIndex(0);
@@ -187,11 +201,13 @@ export const MainArea = () => {
           class="tag"
           style={{
             borderBottom: "3px solid",
-            borderColor: colorsAvailable[randomColorIndex].color
+            borderColor: colorsAvailable[randomColorIndex].color,
+            minHeight: "50px"
           }}
         >
           <img
             class={colorsAvailable[randomColorIndex].clas}
+            style={{ marginRight: "0.5rem" }}
             alt=""
             src="https://img.icons8.com/ios-glyphs/30/000000/price-tag.png"
           />
@@ -201,6 +217,7 @@ export const MainArea = () => {
             placeholder="Enter Tag"
             onKeyUp={checkIfEnterTag}
             value={newTag}
+            maxLength="10"
           ></input>
         </div>
 
@@ -234,7 +251,7 @@ export const MainArea = () => {
       </div>
 
       <span style={{ display: displayToast }} onClick={hideButtonHandler}>
-        <Toast />
+        <Toast text={toastText} />
       </span>
     </div>
   );

@@ -2,7 +2,10 @@ import "./section.css";
 
 export const Note = (props) => {
   return (
-    <div style={{ borderColor: [props.color] }} class="note">
+    <div
+      style={{ borderColor: [props.color], position: "relative" }}
+      class="note"
+    >
       <h1>{props.title}</h1>
       <p>{props.note}</p>
       {props.tag !== "" && (
@@ -32,12 +35,12 @@ export const Note = (props) => {
         </div>
         <div class="properties-pin-add">
           <img
-            alt=""
-            class="pin-icon"
+            alt="pin-icon"
+            style={{ position: "absolute", top: "10px", right: "10px" }}
             src="https://img.icons8.com/ios/24/000000/pin3.png"
           />
           <img
-            alt=""
+            alt="delete icon"
             class="pin-icon"
             src="https://img.icons8.com/ios/24/000000/delete-trash.png"
           />

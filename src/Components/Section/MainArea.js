@@ -2,12 +2,13 @@ import { TagsDiv } from "./TagsDiv";
 import { Note } from "./Note";
 import "./section.css";
 import { useState } from "react";
+import { Toast } from "./Toast";
 const initialNotesDatabase = [
   {
     title: "First Heading",
     note: "Lorem Ipsum somthing somthing",
     color: "#86bbd8",
-    tag: ""
+    tag: "Random"
   }
 ];
 
@@ -34,6 +35,28 @@ const initialTagsDatabase = [
   }
 ];
 
+const colorsAvailable = [
+  {
+    color: "#98DFAF",
+    clas: "random-one"
+  },
+  {
+    color: "#BEB7DF",
+    clas: "random-two"
+  },
+  {
+    color: "#BCAB79",
+    clas: "random-three"
+  },
+  {
+    color: "#DDE2C6",
+    clas: "random-four"
+  },
+  {
+    color: "#F1D6B8",
+    clas: "random-five"
+  }
+];
 export const MainArea = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newNote, setNewNote] = useState("");
@@ -41,18 +64,24 @@ export const MainArea = () => {
   const [notesDatabase, setNotesDatabase] = useState(initialNotesDatabase);
   const [tagsDatabase, setTagsDatabase] = useState(initialTagsDatabase);
   const [currentTag, setCurrentTag] = useState("");
+  const [newTag, setNewTag] = useState("");
+  const [randomColorIndex, setRandomColorIndex] = useState(0);
+  const [displayToast, setDisplayToast] = useState("none");
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
   const addNoteHandler = () => {
-    if (newTitle === "" && newNote === "") return;
+    if (newTitle === "" && newNote === "") {
+      setDisplayToast("block");
+      return;
+    }
     setNotesDatabase([
       ...notesDatabase,
       {
         title: newTitle,
         note: newNote,
         color: customBgColor,
-        tag: currentTag
+        tag: currentTag === "" ? "Random" : currentTag
       }
     ]);
     setCustomBgColor("#f2f2f2");
@@ -69,6 +98,25 @@ export const MainArea = () => {
   const TagClickHandler = (bgcolor, tag) => {
     setCustomBgColor(bgcolor);
     setCurrentTag(tag);
+  };
+  const enterNewTagHandler = (e) => {
+    setNewTag(e.target.value);
+  };
+  const checkIfEnterTag = (e) => {
+    const newobj = {
+      tag: newTag,
+      bgcolor: colorsAvailable[randomColorIndex].color,
+      clas: colorsAvailable[randomColorIndex].clas
+    };
+    if (e.keyCode === 13) {
+      setTagsDatabase([newobj, ...tagsDatabase]);
+      setNewTag("");
+      if (randomColorIndex === 4) setRandomColorIndex(0);
+      else setRandomColorIndex(randomColorIndex + 1);
+    }
+  };
+  const hideButtonHandler = () => {
+    setDisplayToast("none");
   };
   return (
     <div class="main-area">
@@ -134,7 +182,29 @@ export const MainArea = () => {
         </div>
       </div>
       <div class="tags-div">
-        <TagsDiv tag={"Random Tag"} bgcolor={"#E56B70"} clas={"randomTag"} />
+        {/* Random Tag Enter input */}
+        <div
+          class="tag"
+          style={{
+            borderBottom: "3px solid",
+            borderColor: colorsAvailable[randomColorIndex].color
+          }}
+        >
+          <img
+            class={colorsAvailable[randomColorIndex].clas}
+            alt=""
+            src="https://img.icons8.com/ios-glyphs/30/000000/price-tag.png"
+          />
+          <input
+            onChange={enterNewTagHandler}
+            class="new-tag-input"
+            placeholder="Enter Tag"
+            onKeyUp={checkIfEnterTag}
+            value={newTag}
+          ></input>
+        </div>
+
+        {/* Input Tag done */}
         {tagsDatabase.map(({ tag, bgcolor, clas }) => (
           <span
             onClick={() => {
@@ -144,6 +214,17 @@ export const MainArea = () => {
             <TagsDiv tag={tag} bgcolor={bgcolor} clas={clas} />
           </span>
         ))}
+
+        {/* Random Tag */}
+        <span
+          onClick={() => {
+            TagClickHandler("#E56B70", "Random");
+          }}
+        >
+          <TagsDiv tag={"Random"} bgcolor={"#E56B70"} clas={"randomTag"} />
+        </span>
+
+        {/* Random Tag end */}
       </div>
       <div class="display-notes">
         {notesDatabase.map(({ title, note, color, tag }) => {
@@ -151,6 +232,10 @@ export const MainArea = () => {
           return <Note title={title} note={note} color={color} tag={tag} />;
         })}
       </div>
+
+      <span style={{ display: displayToast }} onClick={hideButtonHandler}>
+        <Toast />
+      </span>
     </div>
   );
 };

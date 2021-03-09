@@ -161,17 +161,26 @@
 .tags-div {
   width: 50%;
   margin: 1rem auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 160px 160px 160px 160px 160px;
+  grid-template-rows: 60px 60px;
+  grid-auto-flow: row;
+
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+  /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
 }
 .tag {
   display: flex;
   background: white;
+  height: auto;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   margin-right: 1rem;
+  margin-top: 1rem;
   cursor: pointer;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .randomTag {
@@ -199,6 +208,35 @@
   margin-right: 0.5rem;
   filter: invert(57%) sepia(47%) saturate(2496%) hue-rotate(327deg)
     brightness(129%) contrast(109%);
+}
+.random-one {
+  filter: invert(79%) sepia(37%) saturate(280%) hue-rotate(87deg)
+    brightness(96%) contrast(97%);
+}
+.random-two {
+  filter: invert(79%) sepia(14%) saturate(482%) hue-rotate(210deg)
+    brightness(94%) contrast(88%);
+}
+.random-three {
+  filter: invert(90%) sepia(4%) saturate(2884%) hue-rotate(359deg)
+    brightness(78%) contrast(85%);
+}
+.random-four {
+  filter: invert(88%) sepia(13%) saturate(379%) hue-rotate(38deg)
+    brightness(111%) contrast(77%);
+}
+.random-five {
+  filter: invert(89%) sepia(2%) saturate(4625%) hue-rotate(340deg)
+    brightness(103%) contrast(89%);
+}
+.new-tag-input {
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  width: 70px;
+}
+.new-tag-input:focus {
+  outline: none;
 }
 /* Tags Done --> Notes Section started */
 

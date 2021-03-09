@@ -162,7 +162,6 @@
   width: 50%;
   margin: 1rem auto;
   display: grid;
-  background: red;
   grid-template-columns: 180px 180px 180px 180px;
   grid-template-rows: 60px 60px;
   grid-auto-flow: row;
@@ -248,7 +247,7 @@
 
 .display-notes {
   width: 70%;
-  margin: 2rem auto;
+  margin: 4rem auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -271,12 +270,16 @@
   color: var(--dark-grey-color);
   font-size: 20px;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note > p {
   margin: 1rem 0;
   color: var(--dark-grey-color);
   font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .colors-in-note {
   display: none;

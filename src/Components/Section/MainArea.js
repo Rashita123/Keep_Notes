@@ -8,7 +8,8 @@ const initialNotesDatabase = [
     title: "First Heading",
     note: "Lorem Ipsum somthing somthing",
     color: "#86bbd8",
-    tag: "Random"
+    tag: "Random",
+    pinned: false
   }
 ];
 
@@ -24,7 +25,7 @@ const initialTagsDatabase = [
     clas: "inspiration"
   },
   {
-    tag: "ToDo",
+    tag: "To Do",
     bgcolor: "#D7F9F1",
     clas: "todo"
   },
@@ -68,6 +69,7 @@ export const MainArea = () => {
   const [randomColorIndex, setRandomColorIndex] = useState(0);
   const [displayToast, setDisplayToast] = useState("none");
   const [toastText, setToastText] = useState("");
+  const [pinned, setPinned] = useState(false);
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
@@ -83,13 +85,15 @@ export const MainArea = () => {
         title: newTitle,
         note: newNote,
         color: customBgColor,
-        tag: currentTag === "" ? "Random" : currentTag
+        tag: currentTag === "" ? "Random" : currentTag,
+        pinned: pinned
       }
     ]);
     setCustomBgColor("#f2f2f2");
     setNewTitle("");
     setNewNote("");
     setCurrentTag("");
+    setPinned(false);
   };
   const ResetButtonHandler = () => {
     setNewTitle("");
@@ -132,6 +136,9 @@ export const MainArea = () => {
   const hideButtonHandler = () => {
     setDisplayToast("none");
   };
+  const pinActionHandler = () => {
+    setPinned(!pinned);
+  };
   return (
     <div class="main-area">
       <div class="add-note-section">
@@ -148,7 +155,7 @@ export const MainArea = () => {
             class=" input title-input"
           />
           <textarea
-            style={{ background: [customBgColor] }}
+            style={{ background: [customBgColor], whiteSpace: "pre-wrap" }}
             onChange={(event) => setNewNote(event.target.value)}
             placeholder="Take a note"
             type="text"
@@ -178,11 +185,21 @@ export const MainArea = () => {
             ></div>
           </div>
           <div class="properties-pin-add">
-            <img
-              alt="pin-icon"
-              class="pin-icon"
-              src="https://img.icons8.com/ios/24/000000/pin3.png"
-            />
+            {pinned ? (
+              <img
+                alt="pin-icon"
+                onClick={pinActionHandler}
+                class="pin-icon"
+                src="https://img.icons8.com/ios-filled/24/000000/pin3.png"
+              />
+            ) : (
+              <img
+                alt="pin-icon"
+                onClick={pinActionHandler}
+                class="pin-icon"
+                src="https://img.icons8.com/ios/24/000000/pin3.png"
+              />
+            )}
             <img
               onClick={ResetButtonHandler}
               alt="delete-icon"
@@ -244,9 +261,18 @@ export const MainArea = () => {
         {/* Random Tag end */}
       </div>
       <div class="display-notes">
-        {notesDatabase.map(({ title, note, color, tag }) => {
+        <h3>Pinned Notes</h3>
+        {notesDatabase.map(({ title, note, color, tag, pinned }) => {
           if (color === "#f2f2f2") color = "#86bbd8";
-          return <Note title={title} note={note} color={color} tag={tag} />;
+          return (
+            <Note
+              title={title}
+              note={note}
+              color={color}
+              tag={tag}
+              pinned={pinned}
+            />
+          );
         })}
       </div>
 

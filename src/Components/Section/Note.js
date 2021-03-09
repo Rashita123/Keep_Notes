@@ -1,9 +1,37 @@
 import "./section.css";
 export const Note = (props) => {
+  const getStyle = (pinned, color) => {
+    if (pinned) {
+      return {
+        background: color,
+        color: "black",
+        borderColor: "white",
+        position: "relative"
+      };
+    } else {
+      return {
+        borderColor: [props.color],
+        position: "relative"
+      };
+    }
+  };
   return (
     <div
-      style={{ borderColor: [props.color], position: "relative" }}
       class="note"
+      // {
+      //   props.pinned ?
+      //   style={{
+      //       background: [props.color],
+      //       color: "black",
+      //       borderColor: "white",
+      //     position:"relative"
+      //     }}
+      //     :
+      // style={{ borderColor: [props.color], position: "relative" }}
+
+      // }
+
+      style={getStyle(props.pinned, props.color)}
     >
       <h1>{props.title}</h1>
       <p>{props.note}</p>
@@ -33,16 +61,30 @@ export const Note = (props) => {
           <div class="color-circle circle-four"></div>
         </div>
         <div class="properties-pin-add">
-          <img
-            alt="pin-icon"
-            style={{
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              cursor: "pointer"
-            }}
-            src="https://img.icons8.com/ios/24/000000/pin3.png"
-          />
+          {props.pinned ? (
+            <img
+              src="https://img.icons8.com/ios-filled/24/000000/pin3.png"
+              alt="pin-icon"
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                cursor: "pointer"
+              }}
+            />
+          ) : (
+            <img
+              src="https://img.icons8.com/ios/24/000000/pin3.png"
+              alt="pin-icon"
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                cursor: "pointer"
+              }}
+            />
+          )}
+
           <img
             alt="delete icon"
             class="pin-icon"

@@ -247,7 +247,7 @@
 
 .display-notes {
   width: 70%;
-  margin: 4rem auto;
+  margin: auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -291,4 +291,9 @@
   background: black;
   padding: 0.5rem;
   border-radius: 4px;
+}
+.note-type-heading {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
 }

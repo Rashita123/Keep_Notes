@@ -7,7 +7,7 @@ const initialNotesDatabase = [
   {
     title: "First Heading",
     note: "Lorem Ipsum somthing somthing",
-    color: "#86bbd8",
+    color: "#E56B70",
     tag: "Random",
     pinned: false
   }
@@ -260,19 +260,36 @@ export const MainArea = () => {
 
         {/* Random Tag end */}
       </div>
+      <h3 class="note-type-heading">Pinned Notes</h3>
       <div class="display-notes">
-        <h3>Pinned Notes</h3>
         {notesDatabase.map(({ title, note, color, tag, pinned }) => {
-          if (color === "#f2f2f2") color = "#86bbd8";
-          return (
-            <Note
-              title={title}
-              note={note}
-              color={color}
-              tag={tag}
-              pinned={pinned}
-            />
-          );
+          if (color === "#f2f2f2") color = "#E56B70";
+          if (pinned)
+            return (
+              <Note
+                title={title}
+                note={note}
+                color={color}
+                tag={tag}
+                pinned={pinned}
+              />
+            );
+        })}
+      </div>
+      <h3 class="note-type-heading">Other Notes</h3>
+      <div class="display-notes">
+        {notesDatabase.map(({ title, note, color, tag, pinned }) => {
+          if (color === "#f2f2f2") color = "#E56B70";
+          if (!pinned)
+            return (
+              <Note
+                title={title}
+                note={note}
+                color={color}
+                tag={tag}
+                pinned={pinned}
+              />
+            );
         })}
       </div>
 

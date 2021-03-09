@@ -16,24 +16,8 @@ export const Note = (props) => {
     }
   };
   return (
-    <div
-      class="note"
-      // {
-      //   props.pinned ?
-      //   style={{
-      //       background: [props.color],
-      //       color: "black",
-      //       borderColor: "white",
-      //     position:"relative"
-      //     }}
-      //     :
-      // style={{ borderColor: [props.color], position: "relative" }}
-
-      // }
-
-      style={getStyle(props.pinned, props.color)}
-    >
-      <h1>{props.title}</h1>
+    <div class="note" style={getStyle(props.pinned, props.color)}>
+      <h1 style={{ color: "black", marginTop: "1rem" }}>{props.title}</h1>
       <p>{props.note}</p>
       {props.tag !== "" && (
         <p

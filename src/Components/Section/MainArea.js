@@ -1,8 +1,9 @@
 import { TagsDiv } from "./TagsDiv";
 import { Note } from "./Note";
 import "./section.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Toast } from "./Toast";
+import { Tag } from "./Tag";
 const initialNotesDatabase = [
   {
     title: "First Heading",
@@ -162,7 +163,7 @@ export const MainArea = () => {
             value={newNote}
             class=" placeholder note-text-input"
           ></textarea>
-          {currentTag !== "" && <span>Tag : {currentTag}</span>}
+          {currentTag !== "" && <Tag text={currentTag} />}
         </div>
         <div class="note-properties">
           <div class="add-note-properties-section">
@@ -288,6 +289,8 @@ export const MainArea = () => {
                 color={color}
                 tag={tag}
                 pinned={pinned}
+                database={notesDatabase}
+                setDatabase={setNotesDatabase}
               />
             );
         })}

@@ -1,5 +1,14 @@
 import "./section.css";
-export const Note = (props) => {
+import { Tag } from "./Tag";
+export const Note = ({
+  title,
+  note,
+  color,
+  tag,
+  pinned,
+  database,
+  setDatabase
+}) => {
   const getStyle = (pinned, color) => {
     if (pinned) {
       return {
@@ -10,27 +19,27 @@ export const Note = (props) => {
       };
     } else {
       return {
-        borderColor: [props.color],
+        borderColor: color,
         position: "relative"
       };
     }
   };
+  const notePinnedHandler = (title) => {
+    let newDatabase = [];
+    database.map((obj) => {
+      if (obj.title !== title) {
+        newDatabase.push(obj);
+      } else {
+        newDatabase.push({ title, note, color, tag, pinned: !obj.pinned });
+      }
+    });
+    setDatabase(newDatabase);
+  };
   return (
-    <div class="note" style={getStyle(props.pinned, props.color)}>
-      <h1 style={{ color: "black", marginTop: "1rem" }}>{props.title}</h1>
-      <p>{props.note}</p>
-      {props.tag !== "" && (
-        <p
-          style={{
-            background: props.color,
-            padding: "1rem",
-            borderRadius: "5px",
-            color: "black"
-          }}
-        >
-          Tag : {props.tag}
-        </p>
-      )}
+    <div class="note" style={getStyle(pinned, color)}>
+      <h1 style={{ color: "black", marginTop: "1rem" }}>{title}</h1>
+      <p>{note}</p>
+      {tag !== "" && <Tag text={tag} />}
       <div class="note-properties">
         <div class="palette">
           <img
@@ -45,8 +54,9 @@ export const Note = (props) => {
           <div class="color-circle circle-four"></div>
         </div>
         <div class="properties-pin-add">
-          {props.pinned ? (
+          {pinned ? (
             <img
+              onClick={() => notePinnedHandler(title)}
               src="https://img.icons8.com/ios-filled/24/000000/pin3.png"
               alt="pin-icon"
               style={{
@@ -58,6 +68,7 @@ export const Note = (props) => {
             />
           ) : (
             <img
+              onClick={() => notePinnedHandler(title)}
               src="https://img.icons8.com/ios/24/000000/pin3.png"
               alt="pin-icon"
               style={{

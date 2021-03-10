@@ -1,0 +1,13 @@
+.tag-slit {
+  display: flex;
+  align-items: space-between;
+  justify-content: flex-start;
+  background: #f2f2f2;
+  padding: 0.25rem 0.25rem;
+  margin-bottom: 1rem;
+  border-radius: 3px;
+  width: max-content;
+}
+.tag-slit > p {
+  margin-right: 0.5rem;
+}

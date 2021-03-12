@@ -44,10 +44,31 @@ export const Note = ({
     });
     setDatabase(newDatabase);
   };
+  const changeNoteHandler = (e) => {
+    let newNote = e.target.value;
+    let newDatabase = [];
+    database.map((obj) => {
+      if (obj.title !== title) {
+        newDatabase = [...newDatabase, obj];
+      } else {
+        newDatabase = [
+          ...newDatabase,
+          {
+            title: obj.title,
+            note: [newNote],
+            color: obj.color,
+            tag: obj.tag,
+            pinned: obj.pinned
+          }
+        ];
+      }
+    });
+    setDatabase(newDatabase);
+  };
   return (
     <div class="note" style={getStyle(pinned, color)}>
       <h1 style={{ color: "black", marginTop: "1rem" }}>{title}</h1>
-      <p>{note}</p>
+      <textarea onChange={changeNoteHandler} defaultValue={note}></textarea>
       {tag !== "" && <Tag text={tag} />}
       <div class="note-properties">
         <div class="palette">

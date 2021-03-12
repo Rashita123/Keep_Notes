@@ -1,3 +1,21 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--light-grey);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--medium-grey-text);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-grey-color);
+}
 .section {
   background: var(--light-grey);
   display: flex;
@@ -256,7 +274,7 @@
 }
 .note {
   width: 250px;
-  height: 250px;
+  height: 350px;
   background: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -264,7 +282,7 @@
   margin-right: 1rem;
   margin-bottom: 1rem;
   display: flex;
-  overflow-y:auto;
+  overflow-y: auto;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -274,17 +292,23 @@
   font-weight: bold;
 }
 
-.note > p {
+.note > textarea {
   margin: 1rem 0;
   color: var(--dark-grey-color);
   font-size: 16px;
   flex: 4;
+  background: transparent;
+  border: none;
+  width: 100%;
 }
+.note > textarea:focus {
+  outline: none;
+}
+
 .colors-in-note {
   /* display: none; */
   margin: -0.5rem;
-  margin-left:-2.5rem;
-  
+  margin-left: -2.5rem;
 }
 
 .palette:hover ~ .colors-in-note {

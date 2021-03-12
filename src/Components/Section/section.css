@@ -115,6 +115,7 @@
   height: 25px;
   border-radius: 50%;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 .add-note-properties-section .color-circle:hover {
   border: 2px solid var(--dark-grey-color);
@@ -255,7 +256,7 @@
 }
 .note {
   width: 250px;
-  height: auto;
+  height: 250px;
   background: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -263,27 +264,29 @@
   margin-right: 1rem;
   margin-bottom: 1rem;
   display: flex;
+  overflow-y:auto;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .note > h1 {
   color: var(--dark-grey-color);
   font-size: 20px;
   font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .note > p {
   margin: 1rem 0;
   color: var(--dark-grey-color);
   font-size: 16px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: 4;
 }
 .colors-in-note {
-  display: none;
+  /* display: none; */
+  margin: -0.5rem;
+  margin-left:-2.5rem;
+  
 }
+
 .palette:hover ~ .colors-in-note {
   display: flex;
   /* margin-top: 6rem; */

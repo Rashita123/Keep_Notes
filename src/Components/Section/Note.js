@@ -28,9 +28,18 @@ export const Note = ({
     let newDatabase = [];
     database.map((obj) => {
       if (obj.title !== title) {
-        newDatabase.push(obj);
+        newDatabase = [...newDatabase, obj];
       } else {
-        newDatabase.push({ title, note, color, tag, pinned: !obj.pinned });
+        newDatabase = [
+          ...newDatabase,
+          {
+            title: obj.title,
+            note: obj.note,
+            color: obj.color,
+            tag: obj.tag,
+            pinned: !obj.pinned
+          }
+        ];
       }
     });
     setDatabase(newDatabase);
@@ -42,51 +51,62 @@ export const Note = ({
       {tag !== "" && <Tag text={tag} />}
       <div class="note-properties">
         <div class="palette">
-          <img
+          {/* <img
             alt=""
             src="https://img.icons8.com/windows/24/000000/paint-palette.png"
-          />
+          /> */}
         </div>
         <div class="add-note-properties-section colors-in-note">
-          <div class="color-circle circle-one"></div>
-          <div class="color-circle circle-two"></div>
-          <div class="color-circle circle-three"></div>
-          <div class="color-circle circle-four"></div>
+          <div
+            style={{ border: "1px solid black" }}
+            class="color-circle circle-one"
+          ></div>
+          <div
+            style={{ border: "1px solid black" }}
+            class="color-circle circle-two"
+          ></div>
+          <div
+            style={{ border: "1px solid black" }}
+            class="color-circle circle-three"
+          ></div>
+          <div
+            style={{ border: "1px solid black" }}
+            class="color-circle circle-four"
+          ></div>
         </div>
-        <div class="properties-pin-add">
-          {pinned ? (
-            <img
-              onClick={() => notePinnedHandler(title)}
-              src="https://img.icons8.com/ios-filled/24/000000/pin3.png"
-              alt="pin-icon"
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                cursor: "pointer"
-              }}
-            />
-          ) : (
-            <img
-              onClick={() => notePinnedHandler(title)}
-              src="https://img.icons8.com/ios/24/000000/pin3.png"
-              alt="pin-icon"
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                cursor: "pointer"
-              }}
-            />
-          )}
 
+        <img
+          alt="delete icon"
+          class="pin-icon"
+          src="https://img.icons8.com/ios/24/000000/delete-trash.png"
+        />
+      </div>
+      <div class="properties-pin-add">
+        {pinned ? (
           <img
-            alt="delete icon"
-            class="pin-icon"
-            src="https://img.icons8.com/ios/24/000000/delete-trash.png"
+            onClick={() => notePinnedHandler(title)}
+            src="https://img.icons8.com/ios-filled/24/000000/pin3.png"
+            alt="pin-icon"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              cursor: "pointer"
+            }}
           />
-          <button class="add-button">Edit</button>
-        </div>
+        ) : (
+          <img
+            onClick={() => notePinnedHandler(title)}
+            src="https://img.icons8.com/ios/24/000000/pin3.png"
+            alt="pin-icon"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              cursor: "pointer"
+            }}
+          />
+        )}
       </div>
     </div>
   );

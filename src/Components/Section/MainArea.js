@@ -80,6 +80,11 @@ export const MainArea = () => {
       setDisplayToast("block");
       return;
     }
+    if (newTitle === "") {
+      setToastText("Add Title");
+      setDisplayToast("block");
+      return;
+    }
     setNotesDatabase([
       ...notesDatabase,
       {
@@ -156,7 +161,7 @@ export const MainArea = () => {
             class=" input title-input"
           />
           <textarea
-            style={{ background: [customBgColor], whiteSpace: "pre-wrap" }}
+            style={{ background: [customBgColor], "white-space": "pre-wrap" }}
             onChange={(event) => setNewNote(event.target.value)}
             placeholder="Take a note"
             type="text"

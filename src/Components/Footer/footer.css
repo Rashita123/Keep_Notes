@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 50%;
+  margin: 1rem auto;
+  padding: 1rem 0;
+  color: var(--dark-grey-color);
+}
+.footer__social {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+  align-items: center;
+}

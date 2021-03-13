@@ -304,21 +304,29 @@
 .note > textarea:focus {
   outline: none;
 }
-
+.note > p {
+  margin: 1rem 0;
+  color: var(--dark-grey-color);
+  font-size: 16px;
+  flex: 4;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+/* 
 .colors-in-note {
   /* display: none; */
-  margin: -0.5rem;
-  margin-left: -2.5rem;
-}
+/* margin: 0.5rem; */
+/* margin-left: -2.5rem; */
+/* } */
 
-.palette:hover ~ .colors-in-note {
+/* .palette:hover ~ .colors-in-note {
   display: flex;
-  /* margin-top: 6rem; */
-  /* position: absolute; */
+  margin-top: 6rem; 
   background: black;
   padding: 0.5rem;
   border-radius: 4px;
-}
+} */
 .note-type-heading {
   text-align: center;
   margin-top: 4rem;

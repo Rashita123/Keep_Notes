@@ -4,6 +4,7 @@ import "./section.css";
 import { useState, useEffect } from "react";
 import { Toast } from "./Toast";
 import { Tag } from "./Tag";
+import { Trash } from "./Trash";
 const initialNotesDatabase = [
   {
     title: "First Heading",
@@ -71,6 +72,8 @@ export const MainArea = () => {
   const [displayToast, setDisplayToast] = useState("none");
   const [toastText, setToastText] = useState("");
   const [pinned, setPinned] = useState(false);
+  const [trashDatabase, setTrashDatabase] = useState([]);
+  const [route, setRoute] = useState("Home");
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
@@ -145,6 +148,7 @@ export const MainArea = () => {
   const pinActionHandler = () => {
     setPinned(!pinned);
   };
+
   return (
     <div class="main-area">
       <div class="add-note-section">
@@ -270,7 +274,7 @@ export const MainArea = () => {
       <div class="display-notes">
         {notesDatabase.map(({ title, note, color, tag, pinned }) => {
           if (color === "#f2f2f2") color = "#E56B70";
-          if (pinned)
+          if (pinned) {
             return (
               <Note
                 title={title}
@@ -278,8 +282,14 @@ export const MainArea = () => {
                 color={color}
                 tag={tag}
                 pinned={pinned}
+                noteDatabase={notesDatabase}
+                setNoteDatabase={setNotesDatabase}
+                trashDatabase={trashDatabase}
+                setTrashDatabase={setTrashDatabase}
+                tagDatabase={tagsDatabase}
               />
             );
+          }
         })}
       </div>
       <h3 class="note-type-heading">Other Notes</h3>
@@ -294,13 +304,25 @@ export const MainArea = () => {
                 color={color}
                 tag={tag}
                 pinned={pinned}
-                database={notesDatabase}
-                setDatabase={setNotesDatabase}
+                noteDatabase={notesDatabase}
+                setNoteDatabase={setNotesDatabase}
+                trashDatabase={trashDatabase}
+                setTrashDatabase={setTrashDatabase}
               />
             );
         })}
       </div>
+      {trashDatabase.length !== 0 && (
+        <h3 class="note-type-heading">Trashed Notes</h3>
+      )}
+      {/* //Trash Area */}
+      <div class="display-notes">
+        {trashDatabase.map(({ title, note, color, tag }) => {
+          return <Trash title={title} note={note} color={color} tag={tag} />;
+        })}
+      </div>
 
+      {/* Display Error Toast */}
       <span style={{ display: displayToast }} onClick={hideButtonHandler}>
         <Toast text={toastText} />
       </span>

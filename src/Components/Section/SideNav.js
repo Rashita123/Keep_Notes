@@ -1,10 +1,13 @@
 import "./section.css";
 
-export const SideNav = () => {
+export const SideNav = ({ notesOrTrash, setNotesOrTrash }) => {
   return (
     <div class="side-nav">
       <div class="side-nav__titles">
-        <div class="titles__notes title">
+        <div
+          onClick={() => setNotesOrTrash("notes")}
+          class="titles__notes title"
+        >
           <svg
             class="svg"
             xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +42,10 @@ export const SideNav = () => {
           </svg>
           <h3 class="title-heading">Notes</h3>
         </div>
-        <div class="titles__trash title">
+        <div
+          onClick={() => setNotesOrTrash("trash")}
+          class="titles__trash title"
+        >
           <svg
             class="svg"
             xmlns="http://www.w3.org/2000/svg"

@@ -129,7 +129,7 @@ export const Note = ({
 
         <img
           onClick={deleteNoteHandler}
-          alt="delete icon"
+          alt="delete-icon"
           class="pin-icon"
           src="https://img.icons8.com/ios/24/000000/delete-trash.png"
         />
@@ -142,8 +142,8 @@ export const Note = ({
             alt="pin-icon"
             style={{
               position: "absolute",
-              top: "10px",
-              right: "10px",
+              top: "15px",
+              right: "15px",
               cursor: "pointer"
             }}
           />
@@ -154,8 +154,8 @@ export const Note = ({
             alt="pin-icon"
             style={{
               position: "absolute",
-              top: "10px",
-              right: "10px",
+              top: "15px",
+              right: "15px",
               cursor: "pointer"
             }}
           />

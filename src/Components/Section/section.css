@@ -23,7 +23,7 @@
 }
 .side-nav {
   flex-grow: 1;
-  position: fixed;
+  position: absolute;
   min-width: 250px;
   min-height: 100vh;
   margin-top: 3rem;
@@ -156,6 +156,7 @@
 }
 .pin-icon {
   margin-left: 1rem;
+  cursor: pointer;
 }
 .add-button {
   background: var(--light-grey);
@@ -169,10 +170,6 @@
 }
 .add-button:focus {
   outline: none;
-}
-
-.pin-icon {
-  cursor: pointer;
 }
 
 /* Tags Section */
@@ -265,7 +262,15 @@
 /* Tags Done --> Notes Section started */
 
 .display-notes {
-  width: 70%;
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.display-trash-notes {
+  width: 60%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -290,6 +295,7 @@
   color: var(--dark-grey-color);
   font-size: 20px;
   font-weight: bold;
+  padding: 0.5rem;
 }
 
 .note > textarea {
@@ -300,9 +306,12 @@
   background: transparent;
   border: none;
   width: 100%;
+  padding: 0.5rem;
 }
 .note > textarea:focus {
   outline: none;
+  background: var(--light-grey);
+  border-radius: 4px;
 }
 .note > p {
   margin: 1rem 0;

@@ -8,8 +8,9 @@ import { Trash } from "./Trash";
 const initialNotesDatabase = [
   {
     title: "First Heading",
-    note: "Lorem Ipsum somthing somthing",
-    color: "#E56B70",
+    note:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+    color: "#86bbd8",
     tag: "Random",
     pinned: false
   }
@@ -60,7 +61,7 @@ const colorsAvailable = [
     clas: "random-five"
   }
 ];
-export const MainArea = () => {
+export const MainArea = ({ notesOrTrash }) => {
   const [newTitle, setNewTitle] = useState("");
   const [newNote, setNewNote] = useState("");
   const [customBgColor, setCustomBgColor] = useState("#f2f2f2");
@@ -73,10 +74,13 @@ export const MainArea = () => {
   const [toastText, setToastText] = useState("");
   const [pinned, setPinned] = useState(false);
   const [trashDatabase, setTrashDatabase] = useState([]);
-  const [route, setRoute] = useState("Home");
+  const [displayNotesOrTrash, setDisplayNotesOrTrash] = useState(true);
   const setNoteBgHandler = (color) => {
     setCustomBgColor(color);
   };
+  useEffect(() => {
+    setDisplayNotesOrTrash(notesOrTrash === "notes");
+  }, [notesOrTrash]);
   const addNoteHandler = () => {
     if (newTitle === "" && newNote === "") {
       setToastText("Write something to ADD");
@@ -151,7 +155,10 @@ export const MainArea = () => {
 
   return (
     <div class="main-area">
-      <div class="add-note-section">
+      <div
+        style={displayNotesOrTrash ? { display: "block" } : { display: "none" }}
+        class="add-note-section"
+      >
         <div
           class="add-note-input-section"
           style={{ background: [customBgColor] }}
@@ -222,110 +229,128 @@ export const MainArea = () => {
           </div>
         </div>
       </div>
-      <div class="tags-div">
-        {/* Random Tag Enter input */}
-        <div
-          class="tag"
-          style={{
-            borderBottom: "3px solid",
-            borderColor: colorsAvailable[randomColorIndex].color,
-            minHeight: "50px"
-          }}
-        >
-          <img
-            class={colorsAvailable[randomColorIndex].clas}
-            style={{ marginRight: "0.5rem" }}
-            alt=""
-            src="https://img.icons8.com/ios-glyphs/30/000000/price-tag.png"
-          />
-          <input
-            onChange={enterNewTagHandler}
-            class="new-tag-input"
-            placeholder="Enter Tag"
-            onKeyUp={checkIfEnterTag}
-            value={newTag}
-            maxLength="10"
-          ></input>
-        </div>
-
-        {/* Input Tag done */}
-        {tagsDatabase.map(({ tag, bgcolor, clas }) => (
-          <span
-            onClick={() => {
-              TagClickHandler(bgcolor, tag);
+      <div
+        style={displayNotesOrTrash ? { display: "block" } : { display: "none" }}
+      >
+        <div class="tags-div">
+          {/* Random Tag Enter input */}
+          <div
+            class="tag"
+            style={{
+              borderBottom: "3px solid",
+              borderColor: colorsAvailable[randomColorIndex].color,
+              minHeight: "50px"
             }}
           >
-            <TagsDiv tag={tag} bgcolor={bgcolor} clas={clas} />
+            <img
+              class={colorsAvailable[randomColorIndex].clas}
+              style={{ marginRight: "0.5rem" }}
+              alt=""
+              src="https://img.icons8.com/ios-glyphs/30/000000/price-tag.png"
+            />
+            <input
+              onChange={enterNewTagHandler}
+              class="new-tag-input"
+              placeholder="Enter Tag"
+              onKeyUp={checkIfEnterTag}
+              value={newTag}
+              maxLength="10"
+            ></input>
+          </div>
+
+          {/* Input Tag done */}
+          {tagsDatabase.map(({ tag, bgcolor, clas }) => (
+            <span
+              onClick={() => {
+                TagClickHandler(bgcolor, tag);
+              }}
+            >
+              <TagsDiv tag={tag} bgcolor={bgcolor} clas={clas} />
+            </span>
+          ))}
+
+          {/* Random Tag */}
+          <span
+            onClick={() => {
+              TagClickHandler("#E56B70", "Random");
+            }}
+          >
+            <TagsDiv tag={"Random"} bgcolor={"#E56B70"} clas={"randomTag"} />
           </span>
-        ))}
 
-        {/* Random Tag */}
-        <span
-          onClick={() => {
-            TagClickHandler("#E56B70", "Random");
-          }}
-        >
-          <TagsDiv tag={"Random"} bgcolor={"#E56B70"} clas={"randomTag"} />
+          {/* Random Tag end */}
+        </div>
+      </div>
+      <div
+        style={displayNotesOrTrash ? { display: "block" } : { display: "none" }}
+      >
+        <h3 class="note-type-heading">Pinned Notes</h3>
+        <div class="display-notes">
+          {notesDatabase.map(({ title, note, color, tag, pinned }) => {
+            if (color === "#f2f2f2") color = "#E56B70";
+            if (pinned) {
+              return (
+                <Note
+                  title={title}
+                  note={note}
+                  color={color}
+                  tag={tag}
+                  pinned={pinned}
+                  noteDatabase={notesDatabase}
+                  setNoteDatabase={setNotesDatabase}
+                  trashDatabase={trashDatabase}
+                  setTrashDatabase={setTrashDatabase}
+                  tagDatabase={tagsDatabase}
+                />
+              );
+            }
+          })}
+        </div>
+        <h3 class="note-type-heading">Other Notes</h3>
+        <div class="display-notes">
+          {notesDatabase.map(({ title, note, color, tag, pinned }) => {
+            if (color === "#f2f2f2") color = "#E56B70";
+            if (!pinned)
+              return (
+                <Note
+                  title={title}
+                  note={note}
+                  color={color}
+                  tag={tag}
+                  pinned={pinned}
+                  noteDatabase={notesDatabase}
+                  setNoteDatabase={setNotesDatabase}
+                  trashDatabase={trashDatabase}
+                  setTrashDatabase={setTrashDatabase}
+                />
+              );
+          })}
+        </div>
+        <span style={{ display: displayToast }} onClick={hideButtonHandler}>
+          <Toast text={toastText} />
         </span>
-
-        {/* Random Tag end */}
       </div>
-      <h3 class="note-type-heading">Pinned Notes</h3>
-      <div class="display-notes">
-        {notesDatabase.map(({ title, note, color, tag, pinned }) => {
-          if (color === "#f2f2f2") color = "#E56B70";
-          if (pinned) {
-            return (
-              <Note
-                title={title}
-                note={note}
-                color={color}
-                tag={tag}
-                pinned={pinned}
-                noteDatabase={notesDatabase}
-                setNoteDatabase={setNotesDatabase}
-                trashDatabase={trashDatabase}
-                setTrashDatabase={setTrashDatabase}
-                tagDatabase={tagsDatabase}
-              />
-            );
+      <div
+        style={displayNotesOrTrash ? { display: "none" } : { display: "block" }}
+      >
+        {trashDatabase.length !== 0 && (
+          <h3 class="note-type-heading">Trashed Notes</h3>
+        )}
+        {/* //Trash Area */}
+        <div
+          class="display-trash-notes"
+          style={
+            displayNotesOrTrash ? { display: "none" } : { display: "flex" }
           }
-        })}
-      </div>
-      <h3 class="note-type-heading">Other Notes</h3>
-      <div class="display-notes">
-        {notesDatabase.map(({ title, note, color, tag, pinned }) => {
-          if (color === "#f2f2f2") color = "#E56B70";
-          if (!pinned)
-            return (
-              <Note
-                title={title}
-                note={note}
-                color={color}
-                tag={tag}
-                pinned={pinned}
-                noteDatabase={notesDatabase}
-                setNoteDatabase={setNotesDatabase}
-                trashDatabase={trashDatabase}
-                setTrashDatabase={setTrashDatabase}
-              />
-            );
-        })}
-      </div>
-      {trashDatabase.length !== 0 && (
-        <h3 class="note-type-heading">Trashed Notes</h3>
-      )}
-      {/* //Trash Area */}
-      <div class="display-notes">
-        {trashDatabase.map(({ title, note, color, tag }) => {
-          return <Trash title={title} note={note} color={color} tag={tag} />;
-        })}
+        >
+          {trashDatabase.length === 0 && <p>No notes in trash</p>}
+          {trashDatabase.map(({ title, note, color, tag }) => {
+            return <Trash title={title} note={note} color={color} tag={tag} />;
+          })}
+        </div>
       </div>
 
       {/* Display Error Toast */}
-      <span style={{ display: displayToast }} onClick={hideButtonHandler}>
-        <Toast text={toastText} />
-      </span>
     </div>
   );
 };

@@ -89,6 +89,7 @@ export const Note = ({
     setNoteDatabase(newDatabase);
   };
   const deleteNoteHandler = () => {
+    console.log(noteDatabase);
     setNoteDatabase(noteDatabase.filter((note) => note.title !== title));
     setTrashDatabase([...trashDatabase, { title, note, color, tag }]);
   };

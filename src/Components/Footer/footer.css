@@ -17,4 +17,7 @@
   .footer {
     width: 90%;
   }
+  .footer__social {
+    width: auto;
+  }
 }

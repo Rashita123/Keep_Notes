@@ -358,6 +358,9 @@
     box-shadow: none;
     border-bottom: 1px solid var(--dark-grey-color);
   }
+  .main-area {
+    width: 100%;
+  }
   .side-nav__titles {
     flex-direction: row;
     justify-content: space-between;
@@ -374,11 +377,10 @@
   .tags-div {
     width: 95%;
     margin: auto;
-    grid-template-columns: 170px 170px;
+    grid-template-columns: 175px 175px;
   }
   .display-notes {
     width: 90%;
-    margin: auto;
   }
   .display-trash-notes {
     width: 90%;

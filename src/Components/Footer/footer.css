@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-content: center;
-  width: 50%;
+  width: 55%;
   margin: 1rem auto;
-  padding: 1rem 0;
+  padding: 1rem 1.5rem;
   color: var(--dark-grey-color);
 }
 .footer__social {
@@ -12,4 +12,9 @@
   width: 20%;
   justify-content: space-between;
   align-items: center;
+}
+@media only screen and (max-width: 600px) {
+  .footer {
+    width: 90%;
+  }
 }

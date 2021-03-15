@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
+  box-sizing: border-box;
 }
 
 /* header Left */
@@ -56,3 +57,10 @@
 }
 
 /* Header done. section start */
+
+@media only screen and (max-width: 600px) {
+  .header_left-icon {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+}

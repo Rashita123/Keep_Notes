@@ -369,17 +369,20 @@
     border-radius: 40px 40px 40px 40px;
   }
   .add-note-section {
-    width: 90%;
+    width: 95%;
   }
   .tags-div {
-    width: 90%;
-    grid-template-columns: 180px 180px;
+    width: 95%;
+    margin: auto;
+    grid-template-columns: 170px 170px;
   }
   .display-notes {
     width: 90%;
+    margin: auto;
   }
   .display-trash-notes {
     width: 90%;
+    margin: auto;
   }
   .note {
     width: 300px;

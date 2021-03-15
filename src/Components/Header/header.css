@@ -3,6 +3,7 @@
   justify-content: space-between;
   padding: 1rem 2rem;
   box-sizing: border-box;
+  width: 100%;
 }
 
 /* header Left */
@@ -62,5 +63,6 @@
   .header_left-icon {
     font-size: 10px;
     margin-right: 5px;
+    margin-left: -20px;
   }
 }

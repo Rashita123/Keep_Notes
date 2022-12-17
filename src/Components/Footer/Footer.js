@@ -11,20 +11,14 @@ export const Footer = () => {
               padding: "0.25rem 0.5rem"
             }}
           >
-            Rashita
+            Keep
           </span>{" "}
-          Mehta
+          Notes
         </h2>
       </div>
       <div class="footer__social">
-        <a href="https://github.com/Rashita123">
+        <a href="https://github.com/yashika2406">
           <img src="https://img.icons8.com/fluent/48/000000/github.png" />
-        </a>
-        <a href="https://www.linkedin.com/in/rashita-mehta-350346197">
-          <img src="https://img.icons8.com/material-two-tone/48/000000/linkedin--v1.png" />
-        </a>
-        <a href="https://twitter.com/rashitamehta">
-          <img src="https://img.icons8.com/material-two-tone/48/000000/twitter.png" />
         </a>
       </div>
     </div>
